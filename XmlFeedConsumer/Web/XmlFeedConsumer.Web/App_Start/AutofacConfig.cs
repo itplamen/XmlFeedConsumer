@@ -8,6 +8,7 @@
     using Autofac.Integration.Mvc;
 
     using Data;
+    using Data.Common;
 
     public static class AutofacConfig
     {
@@ -43,6 +44,10 @@
         {
             builder.Register(x => new XmlFeedConsumerDbContext())
                 .As<DbContext>()
+                .InstancePerRequest();
+
+            builder.RegisterGeneric(typeof(DbRepository<>))
+                .As(typeof(IDbRepository<>))
                 .InstancePerRequest();
         }
     }
