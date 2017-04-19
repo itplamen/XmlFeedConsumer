@@ -217,6 +217,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\XmlFeedConsumer.Data.Common\XmlFeedConsumer.Data.Common.csproj">
+      <Project>{1DFC0D07-E3B9-4434-A7AF-D10894048657}</Project>
+      <Name>XmlFeedConsumer.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\XmlFeedConsumer.Data\XmlFeedConsumer.Data.csproj">
       <Project>{bcf6c679-b9b3-477f-833f-25c206aa1cbf}</Project>
       <Name>XmlFeedConsumer.Data</Name>
