@@ -11,6 +11,7 @@
     {
         protected void Application_Start()
         {
+            DbConfig.Initialize();
             AutofacConfig.RegisterAutofac();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
