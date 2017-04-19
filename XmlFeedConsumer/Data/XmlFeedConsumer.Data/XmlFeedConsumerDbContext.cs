@@ -5,6 +5,7 @@
     using System.Linq;
 
     using Common.Models;
+    using Models;
 
     public class XmlFeedConsumerDbContext : DbContext
     {
@@ -12,6 +13,16 @@
             : base("DefaultConnection")
         {
         }
+
+        public virtual IDbSet<Odd> Odds { get; set; }
+
+        public virtual IDbSet<Bet> Bets { get; set; }
+
+        public virtual IDbSet<Match> Matches { get; set; }
+         
+        public virtual IDbSet<Event> Events { get; set; }
+
+        public virtual IDbSet<Sport> Sports { get; set; }
 
         public static XmlFeedConsumerDbContext Create()
         {
