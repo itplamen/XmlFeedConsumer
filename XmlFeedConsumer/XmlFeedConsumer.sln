@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Data.Common
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Data", "Data\XmlFeedConsumer.Data\XmlFeedConsumer.Data.csproj", "{BCF6C679-B9B3-477F-833F-25C206AA1CBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Services.Data", "Services\XmlFeedConsumer.Services.Data\XmlFeedConsumer.Services.Data.csproj", "{323CDD49-77EA-448B-A421-7CAEBB3189E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{BCF6C679-B9B3-477F-833F-25C206AA1CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCF6C679-B9B3-477F-833F-25C206AA1CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCF6C679-B9B3-477F-833F-25C206AA1CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{323CDD49-77EA-448B-A421-7CAEBB3189E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{323CDD49-77EA-448B-A421-7CAEBB3189E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{323CDD49-77EA-448B-A421-7CAEBB3189E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{323CDD49-77EA-448B-A421-7CAEBB3189E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +56,6 @@ Global
 		{2D403C6D-6076-4C4C-8881-F08635EF35C2} = {2FE14749-01C6-4CC0-AA27-C725BE2F8F60}
 		{1DFC0D07-E3B9-4434-A7AF-D10894048657} = {2FE14749-01C6-4CC0-AA27-C725BE2F8F60}
 		{BCF6C679-B9B3-477F-833F-25C206AA1CBF} = {2FE14749-01C6-4CC0-AA27-C725BE2F8F60}
+		{323CDD49-77EA-448B-A421-7CAEBB3189E1} = {27A0E806-0BC9-471A-9AD3-D08AE94986B8}
 	EndGlobalSection
 EndGlobal

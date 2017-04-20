@@ -12,7 +12,7 @@
         [Required]
         public double Value { get; set; }
 
-        public double SpecialBetValue { get; set; }
+        public string SpecialBetValue { get; set; }
 
         public int BetId { get; set; }
 

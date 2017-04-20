@@ -84,7 +84,7 @@ namespace XmlFeedConsumer.Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
                         Value = c.Double(nullable: false),
-                        SpecialBetValue = c.Double(nullable: false),
+                        SpecialBetValue = c.String(),
                         BetId = c.Int(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(),
