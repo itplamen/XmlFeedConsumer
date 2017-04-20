@@ -9,6 +9,7 @@
 
     using Data;
     using Data.Common;
+    using Services.Data.Contracts;
 
     public static class AutofacConfig
     {
@@ -45,6 +46,9 @@
             builder.Register(x => new XmlFeedConsumerDbContext())
                 .As<DbContext>()
                 .InstancePerRequest();
+
+            var dataServicesAssembly = Assembly.GetAssembly(typeof(IBetsService));
+            builder.RegisterAssemblyTypes(dataServicesAssembly).AsImplementedInterfaces();
 
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))
