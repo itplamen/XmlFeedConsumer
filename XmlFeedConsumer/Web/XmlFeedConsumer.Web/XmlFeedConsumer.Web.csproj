@@ -175,6 +175,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Xml.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -208,7 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Models\HomeViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -222,9 +225,17 @@
       <Project>{1DFC0D07-E3B9-4434-A7AF-D10894048657}</Project>
       <Name>XmlFeedConsumer.Data.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Data\XmlFeedConsumer.Data.Models\XmlFeedConsumer.Data.Models.csproj">
+      <Project>{2D403C6D-6076-4C4C-8881-F08635EF35C2}</Project>
+      <Name>XmlFeedConsumer.Data.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\XmlFeedConsumer.Data\XmlFeedConsumer.Data.csproj">
       <Project>{bcf6c679-b9b3-477f-833f-25c206aa1cbf}</Project>
       <Name>XmlFeedConsumer.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmlFeedConsumer.Web.Infrastructure\XmlFeedConsumer.Web.Infrastructure.csproj">
+      <Project>{2E9E04AE-FFFC-4C03-B34D-62148B0AEF7F}</Project>
+      <Name>XmlFeedConsumer.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
