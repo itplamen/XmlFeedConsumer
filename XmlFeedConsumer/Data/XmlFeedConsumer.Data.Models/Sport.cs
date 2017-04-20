@@ -4,7 +4,6 @@
     using System.ComponentModel.DataAnnotations;
 
     using Common.Models;
-    using System.Xml.Serialization;
 
     public class Sport : BaseModel<int>
     {
