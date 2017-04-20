@@ -15,6 +15,10 @@
         [Required]
         public string Name { get; set; }
 
+        public int XmlSportId { get; set; }
+
+        public virtual XmlSport XmlSport { get; set; }
+
         public virtual ICollection<Event> Events { get; set; }
     }
 }

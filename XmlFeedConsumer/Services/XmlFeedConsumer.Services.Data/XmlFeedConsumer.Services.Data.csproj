@@ -46,12 +46,24 @@
   <ItemGroup>
     <Compile Include="BetsService.cs" />
     <Compile Include="Contracts\IBetsService.cs" />
+    <Compile Include="Contracts\IEventsService.cs" />
+    <Compile Include="Contracts\IMatchesService.cs" />
+    <Compile Include="Contracts\IOddsService.cs" />
+    <Compile Include="Contracts\ISportsService.cs" />
+    <Compile Include="EventsService.cs" />
+    <Compile Include="MatchesService.cs" />
+    <Compile Include="OddsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SportsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\XmlFeedConsumer.Common\XmlFeedConsumer.Common.csproj">
+      <Project>{f0a5bd96-11cd-4672-b50b-9922dc699832}</Project>
+      <Name>XmlFeedConsumer.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\XmlFeedConsumer.Data.Common\XmlFeedConsumer.Data.Common.csproj">
       <Project>{1dfc0d07-e3b9-4434-a7af-d10894048657}</Project>
       <Name>XmlFeedConsumer.Data.Common</Name>

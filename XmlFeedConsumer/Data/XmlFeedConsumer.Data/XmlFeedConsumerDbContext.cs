@@ -24,6 +24,8 @@
 
         public virtual IDbSet<Sport> Sports { get; set; }
 
+        public virtual IDbSet<XmlSport> XmlSport { get; set; }
+
         public static XmlFeedConsumerDbContext Create()
         {
             return new XmlFeedConsumerDbContext();

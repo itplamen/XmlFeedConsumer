@@ -55,6 +55,7 @@
     <Compile Include="Odd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sport.cs" />
+    <Compile Include="XmlSport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
