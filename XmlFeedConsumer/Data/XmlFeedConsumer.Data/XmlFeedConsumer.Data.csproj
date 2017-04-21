@@ -49,13 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201704200907403_InitialCreate.cs" />
-    <Compile Include="Migrations\201704200907403_InitialCreate.Designer.cs">
-      <DependentUpon>201704200907403_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704201158447_XmlSport.cs" />
-    <Compile Include="Migrations\201704201158447_XmlSport.Designer.cs">
-      <DependentUpon>201704201158447_XmlSport.cs</DependentUpon>
+    <Compile Include="Migrations\201704210604279_InitialCreate.cs" />
+    <Compile Include="Migrations\201704210604279_InitialCreate.Designer.cs">
+      <DependentUpon>201704210604279_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,11 +72,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704200907403_InitialCreate.resx">
-      <DependentUpon>201704200907403_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704201158447_XmlSport.resx">
-      <DependentUpon>201704201158447_XmlSport.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704210604279_InitialCreate.resx">
+      <DependentUpon>201704210604279_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

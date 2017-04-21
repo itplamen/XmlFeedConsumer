@@ -13,7 +13,7 @@ namespace XmlFeedConsumer.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704200907403_InitialCreate"; }
+            get { return "201704210604279_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

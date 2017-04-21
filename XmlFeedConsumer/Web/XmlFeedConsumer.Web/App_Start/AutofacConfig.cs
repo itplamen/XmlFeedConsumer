@@ -51,7 +51,7 @@
             var dataServicesAssembly = Assembly.GetAssembly(typeof(IBetsService));
             builder.RegisterAssemblyTypes(dataServicesAssembly).AsImplementedInterfaces();
 
-            var utilsServicesAssembly = Assembly.GetAssembly(typeof(IXmlParser));
+            var utilsServicesAssembly = Assembly.GetAssembly(typeof(IXmlParserService));
             builder.RegisterAssemblyTypes(utilsServicesAssembly).AsImplementedInterfaces();
 
             builder.RegisterGeneric(typeof(DbRepository<>))
