@@ -8,6 +8,9 @@
     [XmlRoot(ElementName = "Odd")]
     public class OddViewModel : IMapFrom<Odd>
     {
+        [XmlAttribute("ID")]
+        public int XmlId { get; set; }
+
         [XmlAttribute("Name")]
         public string Name { get; set; }
 
