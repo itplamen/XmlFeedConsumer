@@ -10,6 +10,7 @@
     using Data;
     using Data.Common;
     using Services.Data.Contracts;
+    using Services.Utils.Contracts;
 
     public static class AutofacConfig
     {
@@ -49,6 +50,9 @@
 
             var dataServicesAssembly = Assembly.GetAssembly(typeof(IBetsService));
             builder.RegisterAssemblyTypes(dataServicesAssembly).AsImplementedInterfaces();
+
+            var utilsServicesAssembly = Assembly.GetAssembly(typeof(IXmlParser));
+            builder.RegisterAssemblyTypes(utilsServicesAssembly).AsImplementedInterfaces();
 
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))

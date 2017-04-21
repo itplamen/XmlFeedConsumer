@@ -12,6 +12,8 @@
         public XmlFeedConsumerDbContext()
             : base("DefaultConnection")
         {
+            this.Configuration.AutoDetectChangesEnabled = false;
+            this.Configuration.ValidateOnSaveEnabled = false;
         }
 
         public virtual IDbSet<Odd> Odds { get; set; }
