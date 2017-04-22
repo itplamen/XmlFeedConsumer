@@ -19,6 +19,10 @@
 
         void HardDelete(T entity);
 
+        T Attach(T entity);
+
+        void Detach(T entity);
+
         void Save();
 
         void Dispose();

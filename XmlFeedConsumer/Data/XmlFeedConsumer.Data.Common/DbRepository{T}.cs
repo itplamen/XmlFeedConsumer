@@ -24,17 +24,17 @@
 
         private DbContext Context { get; }
 
-        public IQueryable<T> All()
+        public virtual IQueryable<T> All()
         {
             return this.DbSet.Where(x => !x.IsDeleted);
         }
 
-        public IQueryable<T> AllWithDeleted()
+        public virtual IQueryable<T> AllWithDeleted()
         {
             return this.DbSet;
         }
 
-        public T GetById(object id)
+        public virtual T GetById(object id)
         {
             var item = this.DbSet.Find(id);
             if (item.IsDeleted)
@@ -45,25 +45,53 @@
             return item;
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
-            this.DbSet.Add(entity);
+            var entry = this.Context.Entry(entity);
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Added;
+            }
+            else
+            {
+                this.DbSet.Add(entity);
+            }
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             entity.IsDeleted = true;
             entity.DeletedOn = DateTime.UtcNow;
         }
 
-        public void HardDelete(T entity)
+        public virtual void HardDelete(T entity)
         {
-            this.DbSet.Remove(entity);
+            var entry = this.Context.Entry(entity);
+            if (entry.State != EntityState.Deleted)
+            {
+                entry.State = EntityState.Deleted;
+            }
+            else
+            {
+                this.DbSet.Attach(entity);
+                this.DbSet.Remove(entity);
+            }
         }
 
         public void Save()
         {
             this.Context.SaveChanges();
+        }
+
+        public virtual T Attach(T entity)
+        {
+            return this.Context.Set<T>().Attach(entity);
+        }
+
+        public virtual void Detach(T entity)
+        {
+            var entry = this.Context.Entry(entity);
+            entry.State = EntityState.Detached;
         }
 
         public void Dispose()
