@@ -15,7 +15,7 @@
         public string Name { get; set; }
 
         [Required]
-        public double Value { get; set; }
+        public string Value { get; set; }
 
         public string SpecialBetValue { get; set; }
 
