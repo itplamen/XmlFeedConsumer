@@ -23,7 +23,7 @@
 
         void Detach(T entity);
 
-        void Save();
+        void SaveChanges();
 
         void Dispose();
     }
