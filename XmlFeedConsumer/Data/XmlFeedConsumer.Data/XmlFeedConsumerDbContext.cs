@@ -12,6 +12,7 @@
         public XmlFeedConsumerDbContext()
             : base("DefaultConnection")
         {
+            this.Configuration.AutoDetectChangesEnabled = false;
         }
 
         public virtual IDbSet<Odd> Odds { get; set; }
@@ -19,12 +20,6 @@
         public virtual IDbSet<Bet> Bets { get; set; }
 
         public virtual IDbSet<Match> Matches { get; set; }
-         
-        public virtual IDbSet<Event> Events { get; set; }
-
-        public virtual IDbSet<Sport> Sports { get; set; }
-
-        public virtual IDbSet<XmlSport> XmlSport { get; set; }
 
         public static XmlFeedConsumerDbContext Create()
         {
