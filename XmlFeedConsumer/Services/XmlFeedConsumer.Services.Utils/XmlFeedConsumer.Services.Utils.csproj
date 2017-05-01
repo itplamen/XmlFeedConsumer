@@ -51,6 +51,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\XmlFeedConsumer.Data.Models\XmlFeedConsumer.Data.Models.csproj">
+      <Project>{2D403C6D-6076-4C4C-8881-F08635EF35C2}</Project>
+      <Name>XmlFeedConsumer.Data.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
