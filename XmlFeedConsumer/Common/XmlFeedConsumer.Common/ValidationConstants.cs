@@ -3,5 +3,6 @@
     public static class ValidationConstants
     {
         public const int InvalidId = 0;
+        public const int InvalidEntitiesToProcessed = 0;
     }
 }

@@ -27,10 +27,6 @@
         [Required]
         public string MatchType { get; set; }
 
-        public int EventId { get; set; }
-
-        public virtual Event Event { get; set; }
-
         public virtual ICollection<Bet> Bets { get; set; }
     }
 }
