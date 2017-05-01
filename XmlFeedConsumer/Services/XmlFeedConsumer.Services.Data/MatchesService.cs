@@ -1,8 +1,12 @@
 ﻿namespace XmlFeedConsumer.Services.Data
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using Bytes2you.Validation;
+
+    using EntityFramework.Extensions;
 
     using Common;
     using Contracts;
@@ -20,14 +24,45 @@
             this.matchesRepository = matchesRepository;
         }
 
-        public int Add(Match match)
+        public Match Add(Match match)
         {
             Guard.WhenArgument(match, nameof(match)).IsNull().Throw();
 
             this.matchesRepository.Add(match);
-            this.matchesRepository.Save();
+            this.matchesRepository.SaveChanges();
 
-            return match.Id;
+            return match;
+        }
+
+        public void Add(List<Match> matches, HashSet<int> existMatchXmlIds, int matchesToAdd)
+        {
+            Guard.WhenArgument(matches, nameof(matches)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(existMatchXmlIds, nameof(existMatchXmlIds)).IsNull().Throw();
+            Guard.WhenArgument(matchesToAdd, nameof(matchesToAdd)).IsLessThanOrEqual(ValidationConstants.InvalidEntitiesToProcessed).Throw();
+
+            var addedMatches = 0;
+            var startIndex = matches.FindIndex(m => !existMatchXmlIds.Contains(m.XmlId));
+
+            if (startIndex == -1)
+            {
+                return;
+            }
+
+            for (int i = startIndex; i < matches.Count; i++)
+            {
+                if (addedMatches >= matchesToAdd)
+                {
+                    break;
+                }
+
+                if (!existMatchXmlIds.Contains(matches[i].XmlId) && addedMatches < matchesToAdd)
+                {
+                    this.matchesRepository.Add(matches[i]);
+                    addedMatches++;
+                }
+            }
+
+            this.matchesRepository.SaveChanges();
         }
 
         public Match Get(int id)
@@ -70,12 +105,39 @@
                 matchToUpdate.Name = match.Name;
                 matchToUpdate.StartDate = match.StartDate;
                 matchToUpdate.MatchType = match.MatchType;
-                matchToUpdate.EventId = match.EventId;
 
-                this.matchesRepository.Save();
+                this.matchesRepository.SaveChanges();
             }
 
             return matchToUpdate;
+        }
+
+        public void Update(IEnumerable<Match> matches, int matchesToProcessed)
+        {
+            Guard.WhenArgument(matches, nameof(matches)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(matchesToProcessed, nameof(matchesToProcessed))
+                .IsLessThanOrEqual(ValidationConstants.InvalidEntitiesToProcessed)
+                .Throw();
+
+            var matchesToUpdate = matches
+                .Where(m => this.matchesRepository.All()
+                    .Any(x => x.XmlId == m.XmlId && (x.Name != m.Name || x.MatchType != m.MatchType || x.StartDate != m.StartDate)))
+                .Take(matchesToProcessed);
+
+            if (matchesToUpdate.Any())
+            {
+                foreach (var match in matchesToUpdate)
+                {
+                    this.matchesRepository.All()
+                        .Where(x => x.XmlId == match.XmlId)
+                        .Update(x => new Match()
+                        {
+                            Name = match.Name,
+                            StartDate = match.StartDate,
+                            MatchType = match.MatchType
+                        });
+                }
+            }
         }
 
         public Match Delete(int id)
@@ -87,10 +149,24 @@
             if (matchToDelete != null)
             {
                 this.matchesRepository.Delete(matchToDelete);
-                this.matchesRepository.Save();
+                this.matchesRepository.SaveChanges();
             }
 
             return matchToDelete;
+        }
+
+        public void DeleteOldMatches()
+        {
+            this.matchesRepository.All()
+                .Where(m => !m.IsDeleted && m.StartDate.Day < DateTime.Now.Day)
+                .Update(m => new Match()
+                {
+                    Name = m.Name,
+                    StartDate = m.StartDate,
+                    MatchType = m.MatchType,
+                    IsDeleted = true,
+                    DeletedOn = DateTime.UtcNow
+                });
         }
 
         public bool HardDelete(int id)
@@ -102,7 +178,7 @@
             if (matchToDelete != null)
             {
                 this.matchesRepository.HardDelete(matchToDelete);
-                this.matchesRepository.Save();
+                this.matchesRepository.SaveChanges();
 
                 return true;
             }

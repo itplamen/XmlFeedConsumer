@@ -1,12 +1,15 @@
 ﻿namespace XmlFeedConsumer.Services.Data.Contracts
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using XmlFeedConsumer.Data.Models;
 
     public interface IMatchesService
     {
-        int Add(Match match);
+        Match Add(Match match);
+
+        void Add(List<Match> matches, HashSet<int> existMatchXmlIds, int matchesToAdd);
 
         Match Get(int id);
 
@@ -18,7 +21,11 @@
 
         Match Update(int id, Match match);
 
+        void Update(IEnumerable<Match> matches, int matchesToProcessed);
+
         Match Delete(int id);
+
+        void DeleteOldMatches();
 
         bool HardDelete(int id);
     }
