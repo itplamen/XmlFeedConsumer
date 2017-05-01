@@ -1,8 +1,11 @@
 ﻿namespace XmlFeedConsumer.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using Bytes2you.Validation;
+
+    using EntityFramework.Extensions;
 
     using Common;
     using Contracts;
@@ -20,14 +23,14 @@
             this.oddsRepository = oddsRepository;
         }
 
-        public int Add(Odd odd)
+        public Odd Add(Odd odd)
         {
             Guard.WhenArgument(odd, nameof(odd)).IsNull().Throw();
 
             this.oddsRepository.Add(odd);
-            this.oddsRepository.Save();
+            this.oddsRepository.SaveChanges(); 
 
-            return odd.Id;
+            return odd;
         }
 
         public Odd Get(int id)
@@ -72,10 +75,33 @@
                 oddToUpdate.SpecialBetValue = odd.SpecialBetValue;
                 oddToUpdate.BetId = odd.BetId;
 
-                this.oddsRepository.Save();
+                this.oddsRepository.SaveChanges();
             }
 
             return oddToUpdate;
+        }
+
+        public void Update(IEnumerable<Odd> odds, int oddsToProcessed)
+        {
+            var oddsToUpdate = odds
+                .Where(o => this.oddsRepository.All()
+                    .Any(x => x.XmlId == o.XmlId && (x.Name != o.Name || x.Value != o.Value || x.SpecialBetValue != o.SpecialBetValue)))
+                .Take(oddsToProcessed);
+
+            if (oddsToUpdate.Any())
+            {
+                foreach (var odd in oddsToUpdate)
+                {
+                    this.oddsRepository.All()
+                        .Where(x => x.XmlId == odd.XmlId)
+                        .Update(x => new Odd()
+                        {
+                            Name = odd.Name,
+                            Value = odd.Value,
+                            SpecialBetValue = odd.SpecialBetValue
+                        });
+                }
+            }
         }
 
         public Odd Delete(int id)
@@ -87,7 +113,7 @@
             if (oddToDelete != null)
             {
                 this.oddsRepository.Delete(oddToDelete);
-                this.oddsRepository.Save();
+                this.oddsRepository.SaveChanges();
             }
 
             return oddToDelete;
@@ -102,7 +128,7 @@
             if (oddToDelete != null)
             {
                 this.oddsRepository.HardDelete(oddToDelete);
-                this.oddsRepository.Save();
+                this.oddsRepository.SaveChanges();
 
                 return true;
             }
