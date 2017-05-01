@@ -1,12 +1,13 @@
 ﻿namespace XmlFeedConsumer.Services.Data.Contracts
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using XmlFeedConsumer.Data.Models;
 
     public interface IBetsService
     {
-        int Add(Bet bet);
+        Bet Add(Bet bet);
 
         Bet Get(int id);
 
@@ -17,6 +18,8 @@
         IQueryable<Bet> AllWithDeleted();
 
         Bet Update(int id, Bet bet);
+
+        void Update(IEnumerable<Bet> bets, int betsToProcessed);
 
         Bet Delete(int id);
 

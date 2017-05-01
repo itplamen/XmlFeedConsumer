@@ -1,8 +1,11 @@
 ﻿namespace XmlFeedConsumer.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using Bytes2you.Validation;
+
+    using EntityFramework.Extensions;
 
     using Common;
     using Contracts;
@@ -20,14 +23,14 @@
             this.betsRepository = betsRepository;
         }
 
-        public int Add(Bet bet)
+        public Bet Add(Bet bet)
         {
             Guard.WhenArgument(bet, nameof(bet)).IsNull().Throw();
 
             this.betsRepository.Add(bet);
-            this.betsRepository.Save();
+            this.betsRepository.SaveChanges();
 
-            return bet.Id;
+            return bet;
         }
 
         public Bet Get(int id)
@@ -71,10 +74,37 @@
                 betToUpdate.IsLive = bet.IsLive;
                 betToUpdate.MatchId = bet.MatchId;
 
-                this.betsRepository.Save();
+                this.betsRepository.SaveChanges();
             }
 
             return betToUpdate;
+        }
+
+        public void Update(IEnumerable<Bet> bets, int betsToProcessed)
+        {
+            Guard.WhenArgument(bets, nameof(bets)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(betsToProcessed, nameof(betsToProcessed))
+                .IsLessThanOrEqual(ValidationConstants.InvalidEntitiesToProcessed)
+                .Throw();
+
+            var betsToUpdate = bets
+                .Where(b => this.betsRepository.All()
+                    .Any(x => x.XmlId == b.XmlId && (x.Name != b.Name || x.IsLive != b.IsLive)))
+                    .Take(betsToProcessed);
+
+            if (betsToUpdate.Any())
+            {
+                foreach (var bet in betsToUpdate)
+                {
+                    this.betsRepository.All()
+                        .Where(x => x.XmlId == bet.XmlId)
+                        .Update(x => new Bet()
+                        {
+                            Name = bet.Name,
+                            IsLive = bet.IsLive
+                        });
+                }
+            }
         }
 
         public Bet Delete(int id)
@@ -86,7 +116,7 @@
             if (betToDelete != null)
             {
                 this.betsRepository.Delete(betToDelete);
-                this.betsRepository.Save();
+                this.betsRepository.SaveChanges();
             }
 
             return betToDelete;
@@ -101,7 +131,7 @@
             if (betToDelete != null)
             {
                 this.betsRepository.HardDelete(betToDelete);
-                this.betsRepository.Save();
+                this.betsRepository.SaveChanges();
 
                 return true;
             }
