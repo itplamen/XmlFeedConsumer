@@ -65,6 +65,7 @@
             var validMatches = this.GetValidMatches(uri);
 
             return validMatches
+                .Where(b => b.Element("Bet").Descendants().Any())
                 .Select(o => new Odd()
                 {
                     XmlId = int.Parse(o.Element("Bet").Element("Odd").Attribute("ID").Value),
@@ -84,8 +85,8 @@
             XDocument xmlDoc = XDocument.Load(uri);
 
             return xmlDoc.Descendants("Match")
-                .Where(m => (Convert.ToDateTime(m.Attribute("StartDate").Value) - DateTime.Now).TotalHours >= 0 &&
-                    (Convert.ToDateTime(m.Attribute("StartDate").Value) - DateTime.Now).TotalHours <= TwentyFourHours &&
+                .Where(m => ((Convert.ToDateTime(m.Attribute("StartDate").Value)) - DateTime.Now).TotalHours >= 0 &&
+                    ((Convert.ToDateTime(m.Attribute("StartDate").Value)) - DateTime.Now).TotalHours <= TwentyFourHours &&
                     m.Elements("Bet").Elements("Odd")
                     .Any());
         }
