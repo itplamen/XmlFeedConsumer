@@ -221,8 +221,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Hubs\MyHub.cs" />
+    <Compile Include="Hubs\HomeHub.cs" />
     <Compile Include="Models\Home\BetViewModel.cs" />
     <Compile Include="Models\Home\MatchViewModel.cs" />
     <Compile Include="Models\Home\OddViewModel.cs" />
