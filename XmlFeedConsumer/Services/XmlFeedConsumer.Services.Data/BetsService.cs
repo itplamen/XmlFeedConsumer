@@ -84,7 +84,7 @@
         {
             Guard.WhenArgument(bets, nameof(bets)).IsNullOrEmpty().Throw();
             Guard.WhenArgument(betsToProcessed, nameof(betsToProcessed))
-                .IsLessThanOrEqual(ValidationConstants.InvalidEntitiesToProcessed)
+                .IsLessThanOrEqual(ValidationConstants.InvalidEntitiesCount)
                 .Throw();
 
             var betsToUpdate = bets

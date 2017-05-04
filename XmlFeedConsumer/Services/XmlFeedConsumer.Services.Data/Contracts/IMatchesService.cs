@@ -19,6 +19,8 @@
 
         IQueryable<Match> AllWithDeleted();
 
+        IQueryable<Match> GetLatest(int count);
+
         Match Update(int id, Match match);
 
         void Update(IEnumerable<Match> matches, int matchesToProcessed);

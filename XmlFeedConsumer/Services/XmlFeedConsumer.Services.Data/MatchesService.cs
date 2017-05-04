@@ -38,7 +38,7 @@
         {
             Guard.WhenArgument(matches, nameof(matches)).IsNullOrEmpty().Throw();
             Guard.WhenArgument(existMatchXmlIds, nameof(existMatchXmlIds)).IsNull().Throw();
-            Guard.WhenArgument(matchesToAdd, nameof(matchesToAdd)).IsLessThanOrEqual(ValidationConstants.InvalidEntitiesToProcessed).Throw();
+            Guard.WhenArgument(matchesToAdd, nameof(matchesToAdd)).IsLessThanOrEqual(ValidationConstants.InvalidEntitiesCount).Throw();
 
             var addedMatches = 0;
             var startIndex = matches.FindIndex(m => !existMatchXmlIds.Contains(m.XmlId));
@@ -90,6 +90,15 @@
             return this.matchesRepository.AllWithDeleted();
         }
 
+        public IQueryable<Match> GetLatest(int count)
+        {
+            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.InvalidEntitiesCount);
+
+            return this.matchesRepository.All()
+                .OrderByDescending(m => m.CreatedOn)
+                .Take(count);
+        }
+
         public Match Update(int id, Match match)
         {
             Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
@@ -116,7 +125,7 @@
         {
             Guard.WhenArgument(matches, nameof(matches)).IsNullOrEmpty().Throw();
             Guard.WhenArgument(matchesToProcessed, nameof(matchesToProcessed))
-                .IsLessThanOrEqual(ValidationConstants.InvalidEntitiesToProcessed)
+                .IsLessThanOrEqual(ValidationConstants.InvalidEntitiesCount)
                 .Throw();
 
             var matchesToUpdate = matches
