@@ -1,0 +1,24 @@
+﻿@using System.Globalization
+
+@using XmlFeedConsumer.Web.Models.Home;
+
+@model MatchViewModel
+
+<div class="match">
+    <a href="~/Matches/@Model.XmlId">
+        <p data-xmlid="@Model.XmlId">
+            <span class="match-start-date col-md-2">
+                @Model.StartDate.ToString("MMM dd, HH:mm", CultureInfo.InvariantCulture)
+            </span>
+            <span class="match-name col-md-4">
+                @Model.Name
+            </span>
+            <span class="col-md-2">
+                @Model.MatchType
+            </span>
+            <span class="col-md-2">@Model.Bets.First(b => b.Odds.Any()).Name</span>
+            <span class="col-md-1">@Model.Bets.First(b => b.Odds.Any()).Odds.First().Value</span>
+            <span class="col-md-1">@Model.Bets.Skip(1).First(b => b.Odds.Any()).Odds.First().Value</span>
+        </p> 
+    </a>
+</div>
