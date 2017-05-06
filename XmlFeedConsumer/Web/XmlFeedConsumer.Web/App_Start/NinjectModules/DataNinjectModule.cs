@@ -5,9 +5,11 @@
     using Ninject.Extensions.Conventions;
     using Ninject.Modules;
 
-    using Common;
     using Data;
     using Data.Common;
+    using XmlFeedConsumer.Common;
+    using Services.Utils.Contracts;
+    using Services.Utils;
 
     public class DataNinjectModule : NinjectModule
     {
@@ -21,6 +23,12 @@
                             .BindDefaultInterface());
 
             this.Bind(b => b.From(Assemblies.UtilsServices)
+                            .SelectAllClasses()
+                            .BindDefaultInterface());
+
+            this.Bind(typeof(ICacheService)).To(typeof(HttpCacheService));
+            
+            this.Bind(b => b.From(Assemblies.WebCommon)
                             .SelectAllClasses()
                             .BindDefaultInterface());
         }
