@@ -15,6 +15,9 @@
 
     public class MatchesService : IMatchesService
     {
+        private const int BetsToTake = 1;
+        private const int OddsToTake = 2;
+
         private readonly IDbRepository<Match> matchesRepository;
 
         public MatchesService(IDbRepository<Match> matchesRepository)
@@ -90,12 +93,29 @@
             return this.matchesRepository.AllWithDeleted();
         }
 
-        public IQueryable<Match> GetLatest(int count)
+        public IQueryable<object> GetLatest(int count)
         {
             Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.InvalidEntitiesCount);
 
             return this.matchesRepository.All()
-                .OrderByDescending(m => m.CreatedOn)
+                .Where(m => m.Bets.Any() && m.Bets.Any(x => x.Odds.Count >= OddsToTake))
+                .OrderByDescending(m => m.StartDate)
+                .Select(x => new
+                {
+                    XmlId = x.XmlId,
+                    Name = x.Name,
+                    MatchType = x.MatchType,
+                    StartDate = x.StartDate,
+                    Bets = x.Bets
+                        .Take(BetsToTake)
+                        .Select(b => new
+                        {
+                            XmlId = b.XmlId,
+                            Name = b.Name,
+                            IsLive = b.IsLive,
+                            Odds = b.Odds.Take(OddsToTake)
+                        })
+                })
                 .Take(count);
         }
 
@@ -121,7 +141,7 @@
             return matchToUpdate;
         }
 
-        public void Update(IEnumerable<Match> matches, int matchesToProcessed)
+        public IQueryable<Match> Update(IEnumerable<Match> matches, int matchesToProcessed)
         {
             Guard.WhenArgument(matches, nameof(matches)).IsNullOrEmpty().Throw();
             Guard.WhenArgument(matchesToProcessed, nameof(matchesToProcessed))
@@ -147,6 +167,8 @@
                         });
                 }
             }
+
+            return matchesToUpdate.AsQueryable();
         }
 
         public Match Delete(int id)
@@ -164,15 +186,12 @@
             return matchToDelete;
         }
 
-        public void DeleteOldMatches()
+        public void DeleteMatches()
         {
             this.matchesRepository.All()
                 .Where(m => !m.IsDeleted && m.StartDate.Day < DateTime.Now.Day)
                 .Update(m => new Match()
                 {
-                    Name = m.Name,
-                    StartDate = m.StartDate,
-                    MatchType = m.MatchType,
                     IsDeleted = true,
                     DeletedOn = DateTime.UtcNow
                 });

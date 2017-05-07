@@ -19,15 +19,15 @@
 
         IQueryable<Match> AllWithDeleted();
 
-        IQueryable<Match> GetLatest(int count);
+        IQueryable<object> GetLatest(int count);
 
         Match Update(int id, Match match);
 
-        void Update(IEnumerable<Match> matches, int matchesToProcessed);
+        IQueryable<Match> Update(IEnumerable<Match> matches, int matchesToProcessed);
 
         Match Delete(int id);
 
-        void DeleteOldMatches();
+        void DeleteMatches();
 
         bool HardDelete(int id);
     }
