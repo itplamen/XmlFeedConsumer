@@ -81,7 +81,7 @@
             return oddToUpdate;
         }
 
-        public void Update(IEnumerable<Odd> odds, int oddsToProcessed)
+        public IQueryable<Odd> Update(IEnumerable<Odd> odds, int oddsToProcessed)
         {
             var oddsToUpdate = odds
                 .Where(o => this.oddsRepository.All()
@@ -102,6 +102,8 @@
                         });
                 }
             }
+
+            return oddsToUpdate.AsQueryable();
         }
 
         public Odd Delete(int id)

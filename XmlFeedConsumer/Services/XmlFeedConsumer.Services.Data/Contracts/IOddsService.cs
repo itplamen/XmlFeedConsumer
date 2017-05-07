@@ -19,7 +19,7 @@
 
         Odd Update(int id, Odd odd);
 
-        void Update(IEnumerable<Odd> odds, int oddsToProcessed);
+        IQueryable<Odd> Update(IEnumerable<Odd> odds, int oddsToProcessed);
 
         Odd Delete(int id);
 

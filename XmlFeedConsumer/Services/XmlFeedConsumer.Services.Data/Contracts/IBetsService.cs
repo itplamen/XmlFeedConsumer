@@ -19,7 +19,7 @@
 
         Bet Update(int id, Bet bet);
 
-        void Update(IEnumerable<Bet> bets, int betsToProcessed);
+        IQueryable<Bet> Update(IEnumerable<Bet> bets, int betsToProcessed);
 
         Bet Delete(int id);
 

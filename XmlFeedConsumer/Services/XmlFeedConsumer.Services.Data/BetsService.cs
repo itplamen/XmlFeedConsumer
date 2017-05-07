@@ -80,7 +80,7 @@
             return betToUpdate;
         }
 
-        public void Update(IEnumerable<Bet> bets, int betsToProcessed)
+        public IQueryable<Bet> Update(IEnumerable<Bet> bets, int betsToProcessed)
         {
             Guard.WhenArgument(bets, nameof(bets)).IsNullOrEmpty().Throw();
             Guard.WhenArgument(betsToProcessed, nameof(betsToProcessed))
@@ -105,6 +105,8 @@
                         });
                 }
             }
+
+            return betsToUpdate.AsQueryable();
         }
 
         public Bet Delete(int id)
