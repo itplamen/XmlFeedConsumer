@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Web.Infrast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Services.Utils", "Services\XmlFeedConsumer.Services.Utils\XmlFeedConsumer.Services.Utils.csproj", "{0CFA03D7-8A98-4E53-AE71-245DFEBF7F8D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Web.Common", "XmlFeedConsumer.Web.Common\XmlFeedConsumer.Web.Common.csproj", "{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{0CFA03D7-8A98-4E53-AE71-245DFEBF7F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CFA03D7-8A98-4E53-AE71-245DFEBF7F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CFA03D7-8A98-4E53-AE71-245DFEBF7F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +86,6 @@ Global
 		{F0A5BD96-11CD-4672-B50B-9922DC699832} = {9F14E3FB-149F-41F9-B1C2-4080AC85AC50}
 		{2E9E04AE-FFFC-4C03-B34D-62148B0AEF7F} = {E02F9B1D-0FAD-42B2-9269-CDB87AC47E48}
 		{0CFA03D7-8A98-4E53-AE71-245DFEBF7F8D} = {27A0E806-0BC9-471A-9AD3-D08AE94986B8}
+		{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB} = {E02F9B1D-0FAD-42B2-9269-CDB87AC47E48}
 	EndGlobalSection
 EndGlobal
