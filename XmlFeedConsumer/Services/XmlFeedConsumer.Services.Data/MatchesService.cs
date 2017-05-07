@@ -39,7 +39,7 @@
 
         public void Add(List<Match> matches, HashSet<int> existMatchXmlIds, int matchesToAdd)
         {
-            Guard.WhenArgument(matches, nameof(matches)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(matches, nameof(matches)).IsNull().Throw();
             Guard.WhenArgument(existMatchXmlIds, nameof(existMatchXmlIds)).IsNull().Throw();
             Guard.WhenArgument(matchesToAdd, nameof(matchesToAdd)).IsLessThanOrEqual(ValidationConstants.InvalidEntitiesCount).Throw();
 

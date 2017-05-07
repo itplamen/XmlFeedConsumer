@@ -1,82 +1,48 @@
 ﻿namespace XmlFeedConsumer.Web.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
+    using AutoMapper;
+
     using Bytes2you.Validation;
 
-    using Common;
-    using Data.Models;
+    using Common.Contracts;
+    using Models.Home;
     using Services.Data.Contracts;
-    using Services.Utils.Contracts;
+    using XmlFeedConsumer.Common;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private const int EntitiesToProcessed = 10;
+        private const int MatchesToTake = 30;
 
-        private readonly IXmlParserService xmlParserService;
+        private readonly IManageData manageData;
         private readonly IMatchesService matchesService;
-        private readonly IBetsService betsService;
-        private readonly IOddsService oddsService;
 
-        private List<Match> newMatches;
-        private HashSet<int> existMatchXmlIds;
-
-        public HomeController(IXmlParserService xmlParserService, IMatchesService matchesService, IBetsService betsService, IOddsService oddsService)
+        public HomeController(IManageData manageData, IMatchesService matchesService)
         {
-            Guard.WhenArgument(xmlParserService, nameof(xmlParserService)).IsNull().Throw();
+            Guard.WhenArgument(manageData, nameof(manageData)).IsNull().Throw();
             Guard.WhenArgument(matchesService, nameof(matchesService)).IsNull().Throw();
-            Guard.WhenArgument(betsService, nameof(betsService)).IsNull().Throw();
-            Guard.WhenArgument(oddsService, nameof(oddsService)).IsNull().Throw();
 
-            this.xmlParserService = xmlParserService;
+            this.manageData = manageData;
             this.matchesService = matchesService;
-            this.betsService = betsService;
-            this.oddsService = oddsService;
-
-            this.newMatches = new List<Match>();
-            this.existMatchXmlIds = new HashSet<int>();
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
-            this.newMatches = this.xmlParserService.GetMatches(Constants.BaseUrl).ToList();
-            this.existMatchXmlIds = this.GetExistMatchXmlIds(newMatches);
+            this.matchesService.DeleteMatches();
 
-            this.matchesService.Add(newMatches, existMatchXmlIds, EntitiesToProcessed);
-            this.matchesService.Update(newMatches, EntitiesToProcessed);
+            this.manageData.AddMatches(Constants.EntitiesToProcessed);
 
-            var bets = this.xmlParserService.GetBets(Constants.BaseUrl).ToList();
-            this.betsService.Update(bets, EntitiesToProcessed);
+            var latestMatches = this.Cache.Get(
+                "latestMatches",
+                () => this.matchesService.GetLatest(MatchesToTake)
+                    .Select(Mapper.DynamicMap<MatchViewModel>)
+                    .ToList(),
+                1 * 60);
 
-            var odds = this.xmlParserService.GetOdds(Constants.BaseUrl).ToList();
-            this.oddsService.Update(odds, EntitiesToProcessed);
-
-            this.matchesService.DeleteOldMatches();
-
-            return View();
-        }
-
-        private HashSet<int> GetExistMatchXmlIds(IEnumerable<Match> xmlMatches)
-        {
-            HashSet<int> allMatchesIds = this.GetAllMatchXmlIds(xmlMatches);
-
-            return new HashSet<int>(this.matchesService.All()
-                .Where(m => allMatchesIds.Contains(m.XmlId))
-                .Select(m => m.XmlId));
-        }
-
-        private HashSet<int> GetAllMatchXmlIds(IEnumerable<Match> xmlMatches)
-        {
-            HashSet<int> matchesXmlIds = new HashSet<int>();
-
-            foreach (var match in xmlMatches)
-            {
-                matchesXmlIds.Add(match.XmlId);
-            }
-
-            return matchesXmlIds;
+            return this.View(latestMatches);
         }
     }
 }
