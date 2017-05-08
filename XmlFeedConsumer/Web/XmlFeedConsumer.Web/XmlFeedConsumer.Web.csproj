@@ -231,7 +231,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\HomeHub.cs" />
+    <Compile Include="Hubs\DataHub.cs" />
     <Compile Include="Models\Home\BetViewModel.cs" />
     <Compile Include="Models\Home\MatchViewModel.cs" />
     <Compile Include="Models\Home\OddViewModel.cs" />
@@ -257,6 +257,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\date.format.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />

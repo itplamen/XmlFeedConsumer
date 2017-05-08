@@ -1,31 +1,128 @@
-﻿@{
+﻿@using XmlFeedConsumer.Web.Models.Home;
+
+@model IEnumerable<MatchViewModel>
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="row">
+    <h4 class="col-md-2">Start date</h4>
+    <h4 class="col-md-4">Match name</h4>
+    <h4 class="col-md-2">Type</h4>
+    <h4 class="col-md-2">Market</h4>
+    <h4 class="col-md-1">1</h4>
+    <h4 class="col-md-1">2</h4>
+</div>
+<div id="Content" class="row">
+    @foreach (var match in Model)
+    {
+        @Html.DisplayFor(_ => match)    
+    }
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/signalr")
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/date.format.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var dataHub = $.connection.dataHub,
+                oneMinute = 60000;
+
+            dataHub.client.addMatches = addMatches;
+            dataHub.client.updateMatches = updateMatches;
+            dataHub.client.deleteMatches = deleteMatches;
+            dataHub.client.updateBets = updateBets;
+            dataHub.client.updateOdds = updateOdds;
+
+            $.connection.hub.start().done(function () {
+                setInterval(function () {
+                    dataHub.server.addMatches();
+                    dataHub.server.updateMatches();
+                    dataHub.server.deleteMatches();
+                    dataHub.server.updateBets();
+                    dataHub.server.updateOdds();
+                }, oneMinute);
+            });
+        });
+
+        function addMatches(matches) {
+            $.each(matches, function (index, match) {
+                var $link = $('<a href="~/Matches/' + match.XmlId + '"/>'),
+                    $matchToAdd = $('<div class="match" data-xml-id="' + match.XmlId + '" />');
+
+                formatName(match.Name);
+
+                $matchToAdd
+                    .append($('<span class="col-md-2 match-start-date">' + new Date(match.StartDate).format("mmm dd, HH:MM") + '</span>'))
+                    .append($('<span class="col-md-4 match-name">' + match.Name + '</span>'))
+                    .append($('<span class="col-md-2 match-type">' + match.MatchType + '</span>'))
+                    .append($('<span class="col-md-2 bet-name">' + match.Bets[0].Name + '</span>'))
+                    .append($('<span class="col-md-1 first-odd-value">' + match.Bets[0].Odds[0].Value + '</span>'))
+                    .append($('<span class="col-md-1 second-odd-value">' + match.Bets[0].Odds[1].Value + '</span>'));
+
+                $link.append($matchToAdd);
+
+                $('#Content').prepend($link);
+            });
+        }
+
+        function updateMatches(matches) {
+            $.each(matches, function (index, match) {
+                var $matchToUpdate = $('#Content .match[data-xml-id="' + match.XmlId + '"]');
+                
+                if ($matchToUpdate && $matchToUpdate.is('div')) {
+                    formatName(match.Name);
+
+                    $matchToUpdate.find('.match-start-date').html(new Date(match.StartDate).format("mmm dd, HH:MM"));
+                    $matchToUpdate.find('.match-name').html(match.Name);
+                    $matchToUpdate.find('.match-type').html(match.MatchType);
+                    $matchToUpdate.find('.bet-name').html(match.Bets[0].Name);
+                    $matchToUpdate.find('.first-odd-value').html(match.Bets[0].Odds[0].Value);
+                    $matchToUpdate.find('.second-odd-value').html(match.Bets[0].Odds[1].Value);
+                }
+            });
+        }
+
+        function deleteMatches(matchXmlIds) {
+            $.each(matchXmlIds, function (index, xmlId) {
+                var $matchToDelete = $('#Content .match[data-xml-id="' + xmlId + '"]');
+
+                if ($matchToDelete && $matchToDelete.is('div')) {
+                    $matchToDelete.remove();
+                }
+            });
+        }
+
+        function updateBets(bets) {
+            $.each(bets, function (index, bet) {
+                var $betNameToUpdate = $('#Content .bet-name[data-xml-id="' + bet.XmlId + '"]');
+
+                if ($betNameToUpdate && $betNameToUpdate.is('span')) {
+                    $betNameToUpdate.html(bet.Name);
+                }
+            });
+        }
+
+        function updateOdds(odds) {
+            $.each(odds, function (index, odd) {
+                var $oddValueToUpdate = $('#Content .odd-value[data-xml-id="' + odd.XmlId + '"]');
+
+                if ($oddValueToUpdate && $oddValueToUpdate.is('span')) {
+                    $oddValueToUpdate.html(odd.Value);
+                }
+            });
+        }
+        
+        function formatName(name) {
+            const MaxNameLength = 40;
+
+            if (name > MaxNameLength) {
+                name = name.substring(0, MaxNameLength) + '...';
+            }
+
+            return name;
+        }
+    </script>
+}
