@@ -31,16 +31,15 @@
         [HttpGet]
         public ActionResult Index()
         {
-            this.matchesService.DeleteMatches();
-
             this.manageData.AddMatches(Constants.EntitiesToProcessed);
 
+            // The data are cached for 1 minute (1 * 60 seconds)
             var latestMatches = this.Cache.Get(
                 "latestMatches",
                 () => this.matchesService.GetLatest(MatchesToTake)
                     .Select(Mapper.DynamicMap<MatchViewModel>)
                     .ToList(),
-                1 * 60);
+                1 * 60); 
 
             return this.View(latestMatches);
         }
