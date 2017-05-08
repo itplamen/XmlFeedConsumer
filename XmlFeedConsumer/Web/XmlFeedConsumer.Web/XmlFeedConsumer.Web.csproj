@@ -283,6 +283,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MatchViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\BetViewModel.cshtml" />
+    <Content Include="Views\Matches\Get.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

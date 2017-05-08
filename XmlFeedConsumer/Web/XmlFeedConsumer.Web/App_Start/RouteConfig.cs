@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-
-namespace XmlFeedConsumer.Web
+﻿namespace XmlFeedConsumer.Web
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
@@ -14,10 +10,17 @@ namespace XmlFeedConsumer.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               name: "DefaultGetByXmlId",
+               url: "{controller}/{xmlId}",
+               defaults: new { action = "Get" },
+               constraints: new { xmlId = @"\d+" },
+               namespaces: new[] { "XmlFeedConsumer.Web.Controllers" });
+
+            routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                url: "{controller}/{action}/",
+                defaults: new { controller = "Home", action = "Index" },
+                namespaces: new[] { "XmlFeedConsumer.Web.Controllers" });
         }
     }
 }
