@@ -27,7 +27,7 @@
                     Name = m.Attribute("Name").Value,
                     StartDate = Convert.ToDateTime(m.Attribute("StartDate").Value),
                     MatchType = m.Attribute("MatchType").Value,
-                    Bets = m.Elements("Bet").Select(b => new Bet
+                    Bets = m.Elements("Bet").Where(b => b.Elements("Odd").Any()).Select(b => new Bet
                     {
                         XmlId = int.Parse(b.Attribute("ID").Value),
                         Name = b.Attribute("Name").Value,
