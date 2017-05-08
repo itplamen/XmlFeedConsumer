@@ -1,0 +1,39 @@
+﻿@using System.Globalization
+
+@using XmlFeedConsumer.Web.Models.Home;
+
+@model MatchViewModel
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<h2>@ViewBag.Title <br />
+    <small>Start date: @Model.StartDate.ToString("MMM dd, HH:mm", CultureInfo.InvariantCulture)</small> <br />
+    <small>Match type: @Model.MatchType</small>
+</h2>
+
+<div class="match-details">
+    <h4><strong>Bets:</strong></h4>
+    @foreach (var bet in Model.Bets)
+    {
+        <div class="bets-details">
+            <p>
+                <strong>Name: </strong>@bet.Name <br />
+                <strong>Is live: </strong>@bet.IsLive
+            </p>
+
+            <p><strong>Odds:</strong></p>
+        </div>
+
+        foreach (var odd in bet.Odds)
+        {
+            <div class="odds-details">
+                <p>
+                    <strong>Name: </strong>@odd.Name <br />
+                    <strong>Value: </strong>@odd.Value <br />
+                    <strong>Special bet value: </strong>@(odd.SpecialBetValue != null ? odd.SpecialBetValue : "-")
+                </p>
+            </div>
+        }
+    }
+</div>
