@@ -27,7 +27,7 @@
 
         Match Delete(int id);
 
-        void DeleteMatches();
+        IQueryable<int> DeleteMatches();
 
         bool HardDelete(int id);
     }

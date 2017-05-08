@@ -186,15 +186,18 @@
             return matchToDelete;
         }
 
-        public void DeleteMatches()
+        public IQueryable<int> DeleteMatches()
         {
-            this.matchesRepository.All()
-                .Where(m => !m.IsDeleted && m.StartDate.Day < DateTime.Now.Day)
-                .Update(m => new Match()
-                {
-                    IsDeleted = true,
-                    DeletedOn = DateTime.UtcNow
-                });
+            var matchesToDelete = this.matchesRepository.All()
+                .Where(m => !m.IsDeleted && m.StartDate.Day < DateTime.Now.Day);
+
+            matchesToDelete.Update(m => new Match()
+            {
+                IsDeleted = true,
+                DeletedOn = DateTime.UtcNow
+            });
+
+            return matchesToDelete.Select(m => m.XmlId);
         }
 
         public bool HardDelete(int id)
