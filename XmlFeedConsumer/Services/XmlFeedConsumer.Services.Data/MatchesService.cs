@@ -75,12 +75,12 @@
             return this.matchesRepository.GetById(id);
         }
 
-        public IQueryable<Match> GetAsQueryable(int id)
+        public IQueryable<Match> GetByXmlId(int xmlId)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(xmlId, nameof(xmlId)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
             return this.matchesRepository.All()
-                .Where(m => m.Id == id);
+                .Where(m => m.XmlId == xmlId);
         }
 
         public IQueryable<Match> All()

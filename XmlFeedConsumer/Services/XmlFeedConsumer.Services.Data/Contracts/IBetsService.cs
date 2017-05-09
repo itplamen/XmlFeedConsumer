@@ -11,7 +11,7 @@
 
         Bet Get(int id);
 
-        IQueryable<Bet> GetAsQueryable(int id);
+        IQueryable<Bet> GetByXmlId(int xmlId);
 
         IQueryable<Bet> All();
 

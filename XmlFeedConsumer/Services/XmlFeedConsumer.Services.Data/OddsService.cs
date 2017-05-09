@@ -40,12 +40,12 @@
             return this.oddsRepository.GetById(id);
         }
 
-        public IQueryable<Odd> GetAsQueryable(int id)
+        public IQueryable<Odd> GetByXmlId(int xmlId)
         {
-            Guard.WhenArgument(id, nameof(id)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
+            Guard.WhenArgument(xmlId, nameof(xmlId)).IsLessThanOrEqual(ValidationConstants.InvalidId).Throw();
 
             return this.oddsRepository.All()
-                .Where(o => o.Id == id);
+                .Where(o => o.XmlId == xmlId);
         }
 
         public IQueryable<Odd> All()

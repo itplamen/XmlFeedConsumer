@@ -13,7 +13,7 @@
 
         Match Get(int id);
 
-        IQueryable<Match> GetAsQueryable(int id);
+        IQueryable<Match> GetByXmlId(int xmlId);
 
         IQueryable<Match> All();
 

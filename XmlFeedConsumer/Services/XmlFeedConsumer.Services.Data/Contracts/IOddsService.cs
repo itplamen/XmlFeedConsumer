@@ -11,7 +11,7 @@
 
         Odd Get(int id);
 
-        IQueryable<Odd> GetAsQueryable(int id);
+        IQueryable<Odd> GetByXmlId(int xmlId);
 
         IQueryable<Odd> All();
 
