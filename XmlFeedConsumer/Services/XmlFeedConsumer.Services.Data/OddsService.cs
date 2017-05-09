@@ -83,6 +83,11 @@
 
         public IQueryable<Odd> Update(IEnumerable<Odd> odds, int oddsToProcessed)
         {
+            Guard.WhenArgument(odds, nameof(odds)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(oddsToProcessed, nameof(oddsToProcessed))
+                .IsLessThanOrEqual(ValidationConstants.InvalidEntitiesCount)
+                .Throw();
+
             var oddsToUpdate = odds
                 .Where(o => this.oddsRepository.All()
                     .Any(x => x.XmlId == o.XmlId && (x.Name != o.Name || x.Value != o.Value || x.SpecialBetValue != o.SpecialBetValue)))
