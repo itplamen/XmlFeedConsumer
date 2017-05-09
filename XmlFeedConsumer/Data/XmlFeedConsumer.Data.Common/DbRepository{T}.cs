@@ -78,9 +78,9 @@
             }
         }
 
-        public void SaveChanges()
+        public int SaveChanges()
         {
-            this.Context.SaveChanges();
+            return this.Context.SaveChanges();
         }
 
         public virtual T Attach(T entity)
