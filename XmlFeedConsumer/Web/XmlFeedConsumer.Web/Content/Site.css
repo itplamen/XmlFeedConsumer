@@ -22,3 +22,78 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#Content {
+    border: 1px solid black;
+}
+
+#Content, #AllMatches {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}   
+
+#Content div a:hover span {
+    text-decoration: underline;
+}
+
+#Content .match span, #AllMatches span {
+    margin-top: 10px;
+}
+
+.match-details {
+    margin-top: 30px;
+}
+
+.odds-details {
+    margin-left: 50px;
+}
+
+.match-not-deleted {
+    color: green;
+    font-weight: bold;
+}
+
+.match-deleted {
+    color: red;
+    font-weight: bold;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+#SpinnerGif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+}
+
+.pagination {
+    margin-top: 50px;
+}
+
+#SearchResults span {
+    margin-top: 5px;
+}
+
+.sort-matches-list {
+    color: #555555;
+	font-size: 1em;
+    list-style: none;
+    padding: 0;
+}
+
+.sort-matches-list li {
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.sort-matches-listli label {
+    cursor: pointer;
+}
+
+.sort-text-li {
+    font-size: 18px;
+}
