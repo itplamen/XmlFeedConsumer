@@ -225,6 +225,7 @@
     <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\NinjectSignalRDependencyResolver.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\AjaxOnlyAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MatchesController.cs" />
@@ -235,18 +236,15 @@
     <Compile Include="Models\Home\BetViewModel.cs" />
     <Compile Include="Models\Home\MatchViewModel.cs" />
     <Compile Include="Models\Home\OddViewModel.cs" />
+    <Compile Include="Models\Search\MatchesSearchResultViewModel.cs" />
+    <Compile Include="Models\Search\MatchesSearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Xml.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Content\Xml2.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Content\Images\spinner.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -264,6 +262,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -282,8 +282,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MatchViewModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\BetViewModel.cshtml" />
     <Content Include="Views\Matches\Get.cshtml" />
+    <Content Include="Views\Matches\Index.cshtml" />
+    <Content Include="Views\Shared\_MatchesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,7 +18,7 @@
         private readonly IBetsService betsService;
         private readonly IOddsService oddsService;
 
-        private readonly List<Match> xmlMatches;
+        private readonly  List<Match> xmlMatches;
         private readonly HashSet<int> existMatchXmlIds;
 
         public ManageData(IXmlParserService xmlParserService, IMatchesService matchesService, IBetsService betsService, IOddsService oddsService)
@@ -41,14 +41,15 @@
         /// Adds matches and their bets and odds, by calling matches service.
         /// </summary>
         /// <param name="count">The number of matches to add. For best performance, add 10 matches.</param>
-        /// <returns>Added matches like IQueryable.</returns>
+        /// <returns>Added matches like IQueryable, ordered by match start date.</returns>
         public IQueryable<Match> AddMatches(int count)
         {
             this.matchesService.Add(this.xmlMatches, this.existMatchXmlIds, count);
 
             return this.xmlMatches
                 .AsQueryable()
-                .Where(m => m.Id != ValidationConstants.InvalidId);
+                .Where(m => m.Id != ValidationConstants.InvalidId)
+                .OrderByDescending(m => m.StartDate);
         }
 
         /// <summary>

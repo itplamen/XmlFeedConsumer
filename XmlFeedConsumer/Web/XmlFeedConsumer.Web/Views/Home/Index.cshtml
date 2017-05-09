@@ -49,7 +49,7 @@
 
         function addMatches(matches) {
             $.each(matches, function (index, match) {
-                var $link = $('<a href="~/Matches/' + match.XmlId + '"/>'),
+                var $link = $('<a href="/Matches/' + match.XmlId + '"/>'),
                     $matchToAdd = $('<div class="match" data-xml-id="' + match.XmlId + '" />');
 
                 formatName(match.Name);
