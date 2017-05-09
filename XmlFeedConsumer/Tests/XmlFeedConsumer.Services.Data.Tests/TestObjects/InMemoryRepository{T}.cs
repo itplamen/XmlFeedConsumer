@@ -32,7 +32,9 @@
 
         public IQueryable<T> All()
         {
-            return this.data.AsQueryable();
+            return this.data
+                .Where(x => !x.IsDeleted && x.DeletedOn == null)
+                .AsQueryable();
         }
 
         public IQueryable<T> AllWithDeleted()
@@ -62,7 +64,8 @@
                 throw new InvalidOperationException("Entity not found!");
             }
 
-            this.data.Remove(entity);
+            entity.IsDeleted = true;
+            entity.DeletedOn = DateTime.Now;
         }
 
         public void HardDelete(T entity)
