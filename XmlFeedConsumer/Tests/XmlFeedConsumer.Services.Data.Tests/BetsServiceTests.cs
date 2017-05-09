@@ -43,6 +43,15 @@
         }
 
         [Test]
+        public void AddShouldReturnAddedBet()
+        {
+            var result = this.betsService.Add(this.bet);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(this.bet, result);
+        }
+
+        [Test]
         public void AddShouldPopulateBetToDatabase()
         {
             var result = this.betsService.Add(this.bet);
