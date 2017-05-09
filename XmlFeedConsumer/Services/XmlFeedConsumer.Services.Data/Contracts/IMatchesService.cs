@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Common;
     using XmlFeedConsumer.Data.Models;
 
     public interface IMatchesService
@@ -30,5 +31,12 @@
         IQueryable<int> DeleteMatches();
 
         bool HardDelete(int id);
+
+        IQueryable<Match> Search(
+            string searchWord,
+            string sortBy,
+            string sortType,
+            int page = Constants.MatchesStartPage,
+            int matchesPerPage = Constants.MatchesPerPage);
     }
 }

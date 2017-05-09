@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Dynamic;
 
     using Bytes2you.Validation;
 
@@ -17,6 +18,7 @@
     {
         private const int BetsToTake = 1;
         private const int OddsToTake = 2;
+        private const int MinMatchesPerPageCount = 1;
 
         private readonly IDbRepository<Match> matchesRepository;
 
@@ -215,6 +217,41 @@
             }
 
             return false;
+        }
+
+        public IQueryable<Match> Search(
+            string searchWord,
+            string sortBy,
+            string sortType,
+            int page = Constants.MatchesStartPage,
+            int matchesPerPage = Constants.MatchesPerPage)
+        {
+            Guard.WhenArgument(sortBy, nameof(sortBy)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(sortType, nameof(sortType)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(page, nameof(page)).IsLessThan(Constants.MatchesStartPage).Throw();
+            Guard.WhenArgument(matchesPerPage, nameof(matchesPerPage)).IsLessThanOrEqual(MinMatchesPerPageCount).Throw();
+
+            var matchesToSkip = (page - 1) * Constants.MatchesPerPage;
+
+            var matches = this.BuildFilterQuery(searchWord)
+                .OrderBy(sortBy + " " + sortType)
+                .Skip(matchesToSkip)
+                .Take(matchesPerPage);
+
+            return matches;
+        }
+
+        private IQueryable<Match> BuildFilterQuery(string searchWord)
+        {
+            var matches = this.matchesRepository.AllWithDeleted();
+
+            if (!string.IsNullOrEmpty(searchWord))
+            {
+                matches = matches.Where(m => m.Name.Contains(searchWord) ||
+                    m.MatchType.Contains(searchWord) || m.StartDate.ToString().Contains(searchWord));
+            }
+
+            return matches;
         }
     }
 }
