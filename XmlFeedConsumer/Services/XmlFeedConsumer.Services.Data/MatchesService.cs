@@ -95,7 +95,7 @@
 
         public IQueryable<object> GetLatest(int count)
         {
-            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.InvalidEntitiesCount);
+            Guard.WhenArgument(count, nameof(count)).IsLessThanOrEqual(ValidationConstants.InvalidEntitiesCount).Throw();
 
             return this.matchesRepository.All()
                 .Where(m => m.Bets.Any() && m.Bets.Any(x => x.Odds.Count >= OddsToTake))
