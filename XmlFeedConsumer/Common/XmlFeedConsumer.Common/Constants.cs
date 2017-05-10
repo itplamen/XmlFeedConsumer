@@ -4,6 +4,12 @@
     {
         public const string BaseUrl = "http://vitalbet.net/sportxml";
         public const int EntitiesToProcessed = 10;
+        public const int EntityValidId = 1;
+        public const string MatchValidName = "Match Test Name";
+        public const string BetValidName = "Bet Test Name";
+        public const string OddValidName = "Odd Test Name";
+
+        // Views
         public const int MatchesStartPage = 1;
         public const int MatchesPerPage = 30;
         public const string MatchesInitialOrderBy = "StartDate";
