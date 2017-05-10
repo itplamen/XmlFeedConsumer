@@ -86,9 +86,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\XmlFeedConsumer.Data.Models\XmlFeedConsumer.Data.Models.csproj">
+      <Project>{2D403C6D-6076-4C4C-8881-F08635EF35C2}</Project>
+      <Name>XmlFeedConsumer.Data.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\XmlFeedConsumer.Services.Data\XmlFeedConsumer.Services.Data.csproj">
       <Project>{323CDD49-77EA-448B-A421-7CAEBB3189E1}</Project>
       <Name>XmlFeedConsumer.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\XmlFeedConsumer.Services.Utils\XmlFeedConsumer.Services.Utils.csproj">
+      <Project>{0CFA03D7-8A98-4E53-AE71-245DFEBF7F8D}</Project>
+      <Name>XmlFeedConsumer.Services.Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Web\XmlFeedConsumer.Web.Infrastructure\XmlFeedConsumer.Web.Infrastructure.csproj">
       <Project>{2E9E04AE-FFFC-4C03-B34D-62148B0AEF7F}</Project>
@@ -97,6 +105,10 @@
     <ProjectReference Include="..\..\Web\XmlFeedConsumer.Web\XmlFeedConsumer.Web.csproj">
       <Project>{7402E0F9-48ED-4377-9F1F-B68192A2A678}</Project>
       <Name>XmlFeedConsumer.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XmlFeedConsumer.Web.Common\XmlFeedConsumer.Web.Common.csproj">
+      <Project>{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB}</Project>
+      <Name>XmlFeedConsumer.Web.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\XmlFeedConsumer.Tests.Common\XmlFeedConsumer.Tests.Common.csproj">
       <Project>{203DE01E-5CE0-4CA4-A487-163B970D594B}</Project>

@@ -1,21 +1,26 @@
 ﻿namespace XmlFeedConsumer.Web.Controllers.Tests
 {
-    using System;
+    using System.Collections.Generic;
 
     using NUnit.Framework;
 
     using TestStack.FluentMVCTesting;
 
+    using Common.Contracts;
     using Controllers;
+    using Data.Models;
     using Infrastructure.Mapping;
+    using Models.Home;
     using Services.Data.Contracts;
     using XmlFeedConsumer.Tests.Common.TestObjects;
 
     public class HomeControllerTests
     {
+        private IDataManager dataManager;
+
         private IMatchesService matchesService;
 
-        private MatchesController matchesController;
+        private HomeController homeController;
 
         private AutoMapperConfig autoMapperConfig;
 
@@ -23,9 +28,11 @@
         public void TestInitialize()
         {
             this.matchesService = TestObjectFactoryServices.GetMatchesService();
-            this.matchesController = new MatchesController(this.matchesService);
+            this.dataManager = TestObjectFactoryDataManager.GetDataManager();
+            this.homeController = new HomeController(this.dataManager, this.matchesService);
+            this.homeController.Cache = TestObjectFactoryServices.GetCacheService<Match>();
             this.autoMapperConfig = new AutoMapperConfig();
-            this.autoMapperConfig.Execute(typeof(MatchesController).Assembly);
+            this.autoMapperConfig.Execute(typeof(HomeController).Assembly);
         }
 
         [Test]
@@ -35,29 +42,19 @@
 
             Assert.Throws(
                 typeof(ActionResultAssertionException),
-                () => this.matchesController
+                () => this.homeController
                         .WithCallTo(x => x.Index())
-                        .ShouldRenderView(invalidExpectedView));
+                        .ShouldRenderView(invalidExpectedView)
+                        .WithModel<IEnumerable<MatchViewModel>>()
+                        .AndNoModelErrors());
         }
 
         [Test]
         public void IndexShouldRenderCorrectView()
         {
-            this.matchesController.WithCallTo(x => x.Index())
+            this.homeController
+                .WithCallTo(x => x.Index())
                 .ShouldRenderDefaultView();
-        }
-
-        [Test]
-        public void GetShouldThrowExceptionWhenXmlIdIsInvalid()
-        {
-            var invalidXmlId = -1;
-            var validExpectedView = "Get";
-
-            Assert.Throws(
-                typeof(ArgumentOutOfRangeException),
-                () => this.matchesController
-                        .WithCallTo(x => x.Get(invalidXmlId))
-                        .ShouldRenderView(validExpectedView));
         }
     }
 }
