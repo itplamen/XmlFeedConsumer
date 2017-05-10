@@ -16,22 +16,22 @@
     {
         private const int MatchesToTake = 30;
 
-        private readonly IManageData manageData;
+        private readonly IDataManager dataManager;
         private readonly IMatchesService matchesService;
 
-        public HomeController(IManageData manageData, IMatchesService matchesService)
+        public HomeController(IDataManager manageData, IMatchesService matchesService)
         {
             Guard.WhenArgument(manageData, nameof(manageData)).IsNull().Throw();
             Guard.WhenArgument(matchesService, nameof(matchesService)).IsNull().Throw();
 
-            this.manageData = manageData;
+            this.dataManager = manageData;
             this.matchesService = matchesService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            this.manageData.AddMatches(Constants.EntitiesToProcessed);
+            this.dataManager.AddMatches(Constants.EntitiesToProcessed);
 
             // The data are cached for 1 minute (1 * 60 seconds)
             var latestMatches = this.Cache.Get(

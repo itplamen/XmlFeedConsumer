@@ -11,7 +11,7 @@
     using Services.Utils.Contracts;
     using XmlFeedConsumer.Common;
 
-    public class ManageData : IManageData
+    public class DataManager : IDataManager
     {
         private readonly IXmlParserService xmlParserService;
         private readonly IMatchesService matchesService;
@@ -21,7 +21,7 @@
         private readonly  List<Match> xmlMatches;
         private readonly HashSet<int> existMatchXmlIds;
 
-        public ManageData(IXmlParserService xmlParserService, IMatchesService matchesService, IBetsService betsService, IOddsService oddsService)
+        public DataManager(IXmlParserService xmlParserService, IMatchesService matchesService, IBetsService betsService, IOddsService oddsService)
         {
             Guard.WhenArgument(xmlParserService, nameof(xmlParserService)).IsNull().Throw();
             Guard.WhenArgument(matchesService, nameof(matchesService)).IsNull().Throw();

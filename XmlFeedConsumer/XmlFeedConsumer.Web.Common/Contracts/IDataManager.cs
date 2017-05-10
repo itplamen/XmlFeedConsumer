@@ -4,7 +4,7 @@
 
     using Data.Models;
 
-    public interface IManageData
+    public interface IDataManager
     {
         IQueryable<Match> AddMatches(int count);
 

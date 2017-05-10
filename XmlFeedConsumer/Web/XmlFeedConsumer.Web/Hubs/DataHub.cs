@@ -14,21 +14,21 @@
 
     public class DataHub : Hub
     {
-        private readonly IManageData manageData;
+        private readonly IDataManager dataManager;
         private readonly IMatchesService matchesService;
 
-        public DataHub(IManageData manageData, IMatchesService matchesService)
+        public DataHub(IDataManager manageData, IMatchesService matchesService)
         {
             Guard.WhenArgument(manageData, nameof(manageData)).IsNull().Throw();
             Guard.WhenArgument(matchesService, nameof(matchesService)).IsNull().Throw();
 
-            this.manageData = manageData;
+            this.dataManager = manageData;
             this.matchesService = matchesService;
         }
 
         public void AddMatches()
         {
-            var addedMatches = this.manageData.AddMatches(Constants.EntitiesToProcessed)
+            var addedMatches = this.dataManager.AddMatches(Constants.EntitiesToProcessed)
                 .To<MatchViewModel>()
                 .ToList();
 
@@ -37,7 +37,7 @@
 
         public void UpdateMatches()
         {
-            var updatedMatches = this.manageData.UpdateMatches(Constants.EntitiesToProcessed)
+            var updatedMatches = this.dataManager.UpdateMatches(Constants.EntitiesToProcessed)
                 .To<MatchViewModel>()
                 .ToList();
 
@@ -53,7 +53,7 @@
 
         public void UpdateBets()
         {
-            var updatedBets = this.manageData.UpdateBets(Constants.EntitiesToProcessed)
+            var updatedBets = this.dataManager.UpdateBets(Constants.EntitiesToProcessed)
                 .To<BetViewModel>()
                 .ToList();
 
@@ -62,7 +62,7 @@
 
         public void UpdateOdds()
         {
-            var updatedOdds = this.manageData.UpdateOdds(Constants.EntitiesToProcessed)
+            var updatedOdds = this.dataManager.UpdateOdds(Constants.EntitiesToProcessed)
                 .To<OddViewModel>()
                 .ToList();
 
