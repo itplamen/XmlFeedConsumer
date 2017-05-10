@@ -26,7 +26,7 @@
         }
 
         [Test]
-        public void IndexThrowExceptionWhenControllersDoNotMatch()
+        public void IndexShouldThrowExceptionWhenControllersDoNotMatch()
         {
             Assert.Throws(
                 typeof(MvcRouteTester.Assertions.AssertionException),
