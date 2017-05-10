@@ -30,15 +30,15 @@
                 .Returns(TestObjectFactoryDataModels.Matches);
 
             matchesService.Setup(m => m.Get(
-                    It.Is<int>(i => i != ValidId)))
+                    It.Is<int>(i => i < ValidId)))
                 .Returns<Data.Models.Match>(null);
 
             matchesService.Setup(m => m.Get(
-                    It.Is<int>(i => i == ValidId)))
+                    It.Is<int>(i => i >= ValidId)))
                 .Returns(new Data.Models.Match() { Id = ValidId });
 
             matchesService.Setup(m => m.GetByXmlId(
-                    It.Is<int>(i => i == ValidId)))
+                    It.Is<int>(i => i >= ValidId)))
                 .Returns(TestObjectFactoryDataModels.Matches);
 
             matchesService.Setup(m => m.GetLatest(

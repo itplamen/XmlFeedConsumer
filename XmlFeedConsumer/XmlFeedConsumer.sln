@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Web.Routes.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Web.Controllers.Tests", "Tests\XmlFeedConsumer.Web.Controllers.Tests\XmlFeedConsumer.Web.Controllers.Tests.csproj", "{69E3FFD2-96D1-47BB-AAD3-A42FFECC363B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Web.Hubs.Tests", "Tests\XmlFeedConsumer.Web.Hubs.Tests\XmlFeedConsumer.Web.Hubs.Tests.csproj", "{EE1AFF5B-498E-4C82-A945-A9068DC171B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{69E3FFD2-96D1-47BB-AAD3-A42FFECC363B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69E3FFD2-96D1-47BB-AAD3-A42FFECC363B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69E3FFD2-96D1-47BB-AAD3-A42FFECC363B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE1AFF5B-498E-4C82-A945-A9068DC171B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE1AFF5B-498E-4C82-A945-A9068DC171B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE1AFF5B-498E-4C82-A945-A9068DC171B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE1AFF5B-498E-4C82-A945-A9068DC171B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,5 +121,6 @@ Global
 		{203DE01E-5CE0-4CA4-A487-163B970D594B} = {EEE64622-D063-42F6-9418-0374B286F5C4}
 		{7C46F3C2-DD27-4D08-995D-6A45045ADD45} = {EEE64622-D063-42F6-9418-0374B286F5C4}
 		{69E3FFD2-96D1-47BB-AAD3-A42FFECC363B} = {EEE64622-D063-42F6-9418-0374B286F5C4}
+		{EE1AFF5B-498E-4C82-A945-A9068DC171B7} = {EEE64622-D063-42F6-9418-0374B286F5C4}
 	EndGlobalSection
 EndGlobal

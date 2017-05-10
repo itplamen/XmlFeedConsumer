@@ -13,7 +13,7 @@
             var dataManager = new Mock<IDataManager>();
 
             dataManager.Setup(x => x.AddMatches(
-                    It.Is<int>(i => i != ValidId)))
+                    It.Is<int>(i => i < ValidId)))
                 .Returns<Data.Models.Match>(null);
 
             dataManager.Setup(x => x.AddMatches(
