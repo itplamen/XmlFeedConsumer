@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Web.Common"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Services.Data.Tests", "Tests\XmlFeedConsumer.Services.Data.Tests\XmlFeedConsumer.Services.Data.Tests.csproj", "{027479F8-B688-452E-950B-E256161C6C9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Web.Tests", "Tests\XmlFeedConsumer.Web.Tests\XmlFeedConsumer.Web.Tests.csproj", "{A676168D-DF25-4AC6-B31A-FE2DDA273ED8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Tests.Common", "Tests\XmlFeedConsumer.Tests.Common\XmlFeedConsumer.Tests.Common.csproj", "{203DE01E-5CE0-4CA4-A487-163B970D594B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,14 @@ Global
 		{027479F8-B688-452E-950B-E256161C6C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{027479F8-B688-452E-950B-E256161C6C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{027479F8-B688-452E-950B-E256161C6C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A676168D-DF25-4AC6-B31A-FE2DDA273ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A676168D-DF25-4AC6-B31A-FE2DDA273ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A676168D-DF25-4AC6-B31A-FE2DDA273ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A676168D-DF25-4AC6-B31A-FE2DDA273ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{203DE01E-5CE0-4CA4-A487-163B970D594B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203DE01E-5CE0-4CA4-A487-163B970D594B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203DE01E-5CE0-4CA4-A487-163B970D594B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203DE01E-5CE0-4CA4-A487-163B970D594B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,5 +106,7 @@ Global
 		{0CFA03D7-8A98-4E53-AE71-245DFEBF7F8D} = {27A0E806-0BC9-471A-9AD3-D08AE94986B8}
 		{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB} = {E02F9B1D-0FAD-42B2-9269-CDB87AC47E48}
 		{027479F8-B688-452E-950B-E256161C6C9D} = {EEE64622-D063-42F6-9418-0374B286F5C4}
+		{A676168D-DF25-4AC6-B31A-FE2DDA273ED8} = {EEE64622-D063-42F6-9418-0374B286F5C4}
+		{203DE01E-5CE0-4CA4-A487-163B970D594B} = {EEE64622-D063-42F6-9418-0374B286F5C4}
 	EndGlobalSection
 EndGlobal

@@ -22,7 +22,7 @@
 
         public IEnumerable<BetViewModel> Bets { get; set; }
 
-        public void CreateMappings(IConfiguration config)
+        public void CreateMappings(IMapperConfiguration config)
         {
             config.CreateMap<Match, MatchViewModel>()
                 .ForMember(x => x.IsDeleted, opt => opt.MapFrom(x => x.IsDeleted));
