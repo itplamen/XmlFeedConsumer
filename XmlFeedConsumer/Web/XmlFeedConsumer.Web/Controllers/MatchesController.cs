@@ -55,6 +55,8 @@
         [AjaxOnly]
         public PartialViewResult SearchMatches(MatchesSearchViewModel searchModel, int? page)
         {
+            Guard.WhenArgument(searchModel, nameof(searchModel)).IsNull().Throw();
+
             int actualPage = page ?? Constants.MatchesStartPage;
             Guard.WhenArgument(actualPage, nameof(actualPage)).IsLessThan(Constants.MatchesStartPage).Throw();
 
