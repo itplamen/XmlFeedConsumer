@@ -39,7 +39,7 @@
                 () => this.matchesService.GetLatest(MatchesToTake)
                     .Select(Mapper.DynamicMap<MatchViewModel>)
                     .ToList(),
-                1 * 60); 
+                1 * 60);
 
             return this.View(latestMatches);
         }

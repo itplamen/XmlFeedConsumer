@@ -1,6 +1,7 @@
 ﻿@using System.Globalization
 
-@using XmlFeedConsumer.Web.Models.Home;
+@using XmlFeedConsumer.Common
+@using XmlFeedConsumer.Web.Models.Home
 
 @model MatchViewModel
 
@@ -10,13 +11,19 @@
             @Model.StartDate.ToString("MMM dd, HH:mm", CultureInfo.InvariantCulture)
         </span>
         <span class="col-md-4 match-name">
-            @Model.Name
+            @(Model.Name.Length > Constants.MatchNameMaxLength ? 
+                Model.Name.Substring(0, Constants.MatchNameMaxLength) + "..." : 
+                Model.Name)
         </span>
         <span class="col-md-2 match-type">
-            @Model.MatchType
+            @(Model.MatchType.Length > Constants.MatchTypeMaxLength ? 
+                Model.MatchType.Substring(0, Constants.MatchTypeMaxLength) + "..." : 
+                Model.MatchType)
         </span>
         <span class="col-md-2 bet-name" data-xml-id="@Model.Bets.First().XmlId">
-            @Model.Bets.First().Name
+            @(Model.Bets.First().Name.Length > Constants.BetNameMaxLength ? 
+                Model.Bets.First().Name.Substring(0, Constants.BetNameMaxLength) + "..." : 
+                Model.Bets.First().Name)
         </span>
         <span class="col-md-1 odd-value first-odd-value" data-xml-id="@Model.Bets.First().Odds.First().XmlId">
             @Model.Bets.First().Odds.First().Value

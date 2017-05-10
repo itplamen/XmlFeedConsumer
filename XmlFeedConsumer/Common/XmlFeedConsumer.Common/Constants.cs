@@ -15,5 +15,8 @@
         public const string MatchesInitialOrderBy = "StartDate";
         public const string AscendingSortMatches = "Ascending";
         public const string DescendingSortMatches = "Descending";
+        public const int MatchNameMaxLength = 40;
+        public const int MatchTypeMaxLength = 19;
+        public const int BetNameMaxLength = 19;
     }
 }
