@@ -1,6 +1,6 @@
-﻿namespace XmlFeedConsumer.Web.Routes.Tests.TestObjects
+﻿namespace XmlFeedConsumer.Tests.Common.TestObjects
 {
-    using Models.Search;
+    using Web.Models.Search;
 
     public static class TestObjectFactoryViewModels
     {

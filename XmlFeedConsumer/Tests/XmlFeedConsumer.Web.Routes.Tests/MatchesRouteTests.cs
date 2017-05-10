@@ -9,7 +9,7 @@
     using NUnit.Framework;
 
     using Controllers;
-    using TestObjects;
+    using XmlFeedConsumer.Tests.Common.TestObjects;
 
     [TestFixture]
     public class MatchesRouteTests

@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestObjects\TestObjectFactoryDataModels.cs" />
     <Compile Include="TestObjects\TestObjectFactoryServices.cs" />
+    <Compile Include="TestObjects\TestObjectFactoryViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -71,6 +72,10 @@
     <ProjectReference Include="..\..\Services\XmlFeedConsumer.Services.Data\XmlFeedConsumer.Services.Data.csproj">
       <Project>{323CDD49-77EA-448B-A421-7CAEBB3189E1}</Project>
       <Name>XmlFeedConsumer.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Web\XmlFeedConsumer.Web\XmlFeedConsumer.Web.csproj">
+      <Project>{7402E0F9-48ED-4377-9F1F-B68192A2A678}</Project>
+      <Name>XmlFeedConsumer.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
