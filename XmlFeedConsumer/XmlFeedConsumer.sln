@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Web.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Tests.Common", "Tests\XmlFeedConsumer.Tests.Common\XmlFeedConsumer.Tests.Common.csproj", "{203DE01E-5CE0-4CA4-A487-163B970D594B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlFeedConsumer.Web.Routes.Tests", "Tests\XmlFeedConsumer.Web.Routes.Tests\XmlFeedConsumer.Web.Routes.Tests.csproj", "{7C46F3C2-DD27-4D08-995D-6A45045ADD45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{203DE01E-5CE0-4CA4-A487-163B970D594B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{203DE01E-5CE0-4CA4-A487-163B970D594B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{203DE01E-5CE0-4CA4-A487-163B970D594B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C46F3C2-DD27-4D08-995D-6A45045ADD45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C46F3C2-DD27-4D08-995D-6A45045ADD45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C46F3C2-DD27-4D08-995D-6A45045ADD45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C46F3C2-DD27-4D08-995D-6A45045ADD45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,5 +114,6 @@ Global
 		{027479F8-B688-452E-950B-E256161C6C9D} = {EEE64622-D063-42F6-9418-0374B286F5C4}
 		{A676168D-DF25-4AC6-B31A-FE2DDA273ED8} = {EEE64622-D063-42F6-9418-0374B286F5C4}
 		{203DE01E-5CE0-4CA4-A487-163B970D594B} = {EEE64622-D063-42F6-9418-0374B286F5C4}
+		{7C46F3C2-DD27-4D08-995D-6A45045ADD45} = {EEE64622-D063-42F6-9418-0374B286F5C4}
 	EndGlobalSection
 EndGlobal
