@@ -1,10 +1,12 @@
 ﻿namespace XmlFeedConsumer.Tests.Common.TestObjects
 {
+    using System;
     using System.Collections.Generic;
 
     using Moq;
 
     using Services.Data.Contracts;
+    using Services.Utils.Contracts;
 
     public static class TestObjectFactoryServices
     {
@@ -39,6 +41,10 @@
                     It.Is<int>(i => i == ValidId)))
                 .Returns(TestObjectFactoryDataModels.Matches);
 
+            matchesService.Setup(m => m.GetLatest(
+                    It.IsAny<int>()))
+                .Returns(TestObjectFactoryDataModels.Matches);
+
             matchesService.Setup(m => m.Search(
                     It.IsAny<string>(),
                     It.IsAny<string>(),
@@ -48,6 +54,20 @@
                 .Returns(TestObjectFactoryDataModels.Matches);
 
             return matchesService.Object;
+        }
+
+        public static ICacheService GetCacheService<T>()
+            where T : class
+        {
+            var cacheService = new Mock<ICacheService>();
+            
+            cacheService.Setup(c => c.Get(
+                    It.IsAny<string>(),
+                    It.IsAny<Func<T>>(),
+                    It.IsAny<int>()))
+                .Returns(new Mock<T>().Object);
+
+            return cacheService.Object;
         }
     }
 }

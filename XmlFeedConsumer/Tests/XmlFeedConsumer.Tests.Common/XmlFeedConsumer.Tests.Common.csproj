@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestObjects\TestObjectFactoryDataModels.cs" />
+    <Compile Include="TestObjects\TestObjectFactoryDataManager.cs" />
     <Compile Include="TestObjects\TestObjectFactoryServices.cs" />
     <Compile Include="TestObjects\TestObjectFactoryViewModels.cs" />
   </ItemGroup>
@@ -73,9 +75,17 @@
       <Project>{323CDD49-77EA-448B-A421-7CAEBB3189E1}</Project>
       <Name>XmlFeedConsumer.Services.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\XmlFeedConsumer.Services.Utils\XmlFeedConsumer.Services.Utils.csproj">
+      <Project>{0CFA03D7-8A98-4E53-AE71-245DFEBF7F8D}</Project>
+      <Name>XmlFeedConsumer.Services.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Web\XmlFeedConsumer.Web\XmlFeedConsumer.Web.csproj">
       <Project>{7402E0F9-48ED-4377-9F1F-B68192A2A678}</Project>
       <Name>XmlFeedConsumer.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XmlFeedConsumer.Web.Common\XmlFeedConsumer.Web.Common.csproj">
+      <Project>{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB}</Project>
+      <Name>XmlFeedConsumer.Web.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
