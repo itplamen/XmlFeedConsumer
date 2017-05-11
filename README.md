@@ -1,6 +1,6 @@
 # XmlFeedConsumer
 
-Practical assignment from UltraPlay for the role of Junior .Net Developer. The application requests the http://vitalbet.net/sportxml feed every 60 seconds and stores only the new entities in the database and updates the existing ones if a change is present. Only matches which have odds and will start in the next 24 hours are displayed. Data on the page are be updated every 60 seconds.
+Practical assignment from UltraPlay for the role of Junior .Net Developer. The application requests the http://vitalbet.net/sportxml feed every 60 seconds and stores only the new entities in the database and updates the existing ones if a change is present. Only matches which have odds and will start in the next 24 hours are displayed. Data on the page are updated every 60 seconds.
 
 ## Build status
 
