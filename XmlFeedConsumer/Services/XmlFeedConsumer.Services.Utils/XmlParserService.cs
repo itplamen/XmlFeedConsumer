@@ -84,13 +84,10 @@
         {
             XDocument xmlDoc = XDocument.Load(uri);
 
-            //return xmlDoc.Descendants("Match")
-            //    .Where(m => ((Convert.ToDateTime(m.Attribute("StartDate").Value)) - DateTime.Now).TotalHours >= 0 &&
-            //        ((Convert.ToDateTime(m.Attribute("StartDate").Value)) - DateTime.Now).TotalHours <= TwentyFourHours &&
-            //        m.Elements("Bet").Elements("Odd").Any());
-
             return xmlDoc.Descendants("Match")
-                .Where(m => m.Elements("Bet").Elements("Odd").Any());
+                .Where(m => ((Convert.ToDateTime(m.Attribute("StartDate").Value)) - DateTime.Now).TotalHours >= 0 &&
+                    ((Convert.ToDateTime(m.Attribute("StartDate").Value)) - DateTime.Now).TotalHours <= TwentyFourHours &&
+                    m.Elements("Bet").Elements("Odd").Any());
         }
     }
 }
