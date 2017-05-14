@@ -18,7 +18,7 @@
         private readonly IBetsService betsService;
         private readonly IOddsService oddsService;
 
-        private readonly  List<Match> xmlMatches;
+        private readonly List<Match> xmlMatches;
         private readonly HashSet<int> existMatchXmlIds;
 
         public DataManager(IXmlParserService xmlParserService, IMatchesService matchesService, IBetsService betsService, IOddsService oddsService)

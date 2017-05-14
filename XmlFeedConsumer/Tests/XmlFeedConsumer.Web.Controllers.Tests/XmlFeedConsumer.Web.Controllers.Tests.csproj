@@ -106,10 +106,6 @@
       <Project>{7402E0F9-48ED-4377-9F1F-B68192A2A678}</Project>
       <Name>XmlFeedConsumer.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\XmlFeedConsumer.Web.Common\XmlFeedConsumer.Web.Common.csproj">
-      <Project>{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB}</Project>
-      <Name>XmlFeedConsumer.Web.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\XmlFeedConsumer.Tests.Common\XmlFeedConsumer.Tests.Common.csproj">
       <Project>{203DE01E-5CE0-4CA4-A487-163B970D594B}</Project>
       <Name>XmlFeedConsumer.Tests.Common</Name>

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D0B1E4F5-F5BB-4726-99AA-E68EE89751DB}</ProjectGuid>
+    <ProjectGuid>{7CA29F83-7476-4DCC-9F33-03DEA308B354}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XmlFeedConsumer.Web.Common</RootNamespace>
@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
+      <HintPath>..\..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -49,29 +49,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\XmlFeedConsumer.Common\XmlFeedConsumer.Common.csproj">
+    <ProjectReference Include="..\..\Common\XmlFeedConsumer.Common\XmlFeedConsumer.Common.csproj">
       <Project>{F0A5BD96-11CD-4672-B50B-9922DC699832}</Project>
       <Name>XmlFeedConsumer.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data\XmlFeedConsumer.Data.Common\XmlFeedConsumer.Data.Common.csproj">
+    <ProjectReference Include="..\..\Data\XmlFeedConsumer.Data.Common\XmlFeedConsumer.Data.Common.csproj">
       <Project>{1dfc0d07-e3b9-4434-a7af-d10894048657}</Project>
       <Name>XmlFeedConsumer.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data\XmlFeedConsumer.Data.Models\XmlFeedConsumer.Data.Models.csproj">
+    <ProjectReference Include="..\..\Data\XmlFeedConsumer.Data.Models\XmlFeedConsumer.Data.Models.csproj">
       <Project>{2D403C6D-6076-4C4C-8881-F08635EF35C2}</Project>
       <Name>XmlFeedConsumer.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\XmlFeedConsumer.Services.Data\XmlFeedConsumer.Services.Data.csproj">
+    <ProjectReference Include="..\..\Services\XmlFeedConsumer.Services.Data\XmlFeedConsumer.Services.Data.csproj">
       <Project>{323CDD49-77EA-448B-A421-7CAEBB3189E1}</Project>
       <Name>XmlFeedConsumer.Services.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\XmlFeedConsumer.Services.Utils\XmlFeedConsumer.Services.Utils.csproj">
+    <ProjectReference Include="..\..\Services\XmlFeedConsumer.Services.Utils\XmlFeedConsumer.Services.Utils.csproj">
       <Project>{0CFA03D7-8A98-4E53-AE71-245DFEBF7F8D}</Project>
       <Name>XmlFeedConsumer.Services.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Web\XmlFeedConsumer.Web.Infrastructure\XmlFeedConsumer.Web.Infrastructure.csproj">
-      <Project>{2E9E04AE-FFFC-4C03-B34D-62148B0AEF7F}</Project>
-      <Name>XmlFeedConsumer.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
