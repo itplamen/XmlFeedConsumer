@@ -98,6 +98,10 @@
       <Project>{0CFA03D7-8A98-4E53-AE71-245DFEBF7F8D}</Project>
       <Name>XmlFeedConsumer.Services.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Web\XmlFeedConsumer.Web.Common\XmlFeedConsumer.Web.Common.csproj">
+      <Project>{7CA29F83-7476-4DCC-9F33-03DEA308B354}</Project>
+      <Name>XmlFeedConsumer.Web.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Web\XmlFeedConsumer.Web.Infrastructure\XmlFeedConsumer.Web.Infrastructure.csproj">
       <Project>{2E9E04AE-FFFC-4C03-B34D-62148B0AEF7F}</Project>
       <Name>XmlFeedConsumer.Web.Infrastructure</Name>
